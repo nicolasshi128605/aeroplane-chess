@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class TileGenerator : MonoBehaviour
@@ -12,6 +13,7 @@ public class TileGenerator : MonoBehaviour
         GenerateTiles();
     }
 
+    [Button]
     public void GenerateTiles()
     {
         for (var i = 0; i < numberToGenerated; i++)
