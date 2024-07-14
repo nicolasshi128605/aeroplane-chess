@@ -20,14 +20,14 @@ public class TileGenerator : MonoBehaviour
         {
             for (var i = 0; i < 6; i++)
             {
-                Instantiate(tileToGenerate, new Vector3(375 - 150 * i, j == 0 ? 575 : -575, 0f), Quaternion.identity, transform);
+                Instantiate(tileToGenerated, new Vector3(375 - 150 * i, j == 0 ? 575 : -575, 0f), Quaternion.identity, transform);
             }
         }
         for (var j = 0; j < 2; j++)
         {
             for (var i = 0; i < 6; i++)
             {
-                Instantiate(tileToGenerate, new Vector3(j == 0 ? 575 : -575, 375 - 150 * i, 0f), Quaternion.identity, transform);
+                Instantiate(tileToGenerated, new Vector3(j == 0 ? 575 : -575, 375 - 150 * i, 0f), Quaternion.identity, transform);
             }
         }
 
