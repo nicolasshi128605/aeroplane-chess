@@ -1,7 +1,15 @@
+using System;
+using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Tile : MonoBehaviour
 {
+    private void Start()
+    {
+        
+    }
+
     public void ChangeColor(int i)
     {
         var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
