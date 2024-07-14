@@ -13,12 +13,26 @@ public class TileGenerator : MonoBehaviour
         GenerateTiles();
     }
 
-    [Button]
+
     public void GenerateTiles()
     {
-        for (var i = 0; i < numberToGenerated; i++)
+        for (var j = 0; j < 2; j++)
         {
-            Instantiate(tileToGenerated, new Vector3(i * 100f, 0f, 0f), new Quaternion(), transform);
+            for (var i = 0; i < 6; i++)
+            {
+                Instantiate(tileToGenerate, new Vector3(375 - 150 * i, j == 0 ? 575 : -575, 0f), Quaternion.identity, transform);
+            }
         }
+        for (var j = 0; j < 2; j++)
+        {
+            for (var i = 0; i < 6; i++)
+            {
+                Instantiate(tileToGenerate, new Vector3(j == 0 ? 575 : -575, 375 - 150 * i, 0f), Quaternion.identity, transform);
+            }
+        }
+
+        
+          
+        
     }
 }
