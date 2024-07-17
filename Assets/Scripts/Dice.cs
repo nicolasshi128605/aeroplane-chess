@@ -11,6 +11,7 @@ namespace DefaultNamespace
     {
         public List<Sprite> pointImage;
         public bool canRoll;
+        public bool Rolled=false;
         public bool BotRoll;
         private int lastRollResult;
 
@@ -20,13 +21,15 @@ namespace DefaultNamespace
         }
 
         public void Play()
-        {
-           
+        { 
+            Roll();
         }
 
         [Button]
         public int Roll()
         {
+            Debug.Log("Rolled set to true");
+            Rolled = true;
             if (!canRoll) return -1;
 
             canRoll = false;
