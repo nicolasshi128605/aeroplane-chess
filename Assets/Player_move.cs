@@ -8,6 +8,7 @@ public class Player_move : MonoBehaviour
 {
     private Dice dice;
     public int CurrentLocation = 0;
+
     public Vector3[] moveLocations = new Vector3[]
     {
         // First set of tiles (j == 0)
@@ -42,20 +43,26 @@ public class Player_move : MonoBehaviour
         new Vector3(-115f, -45f, 0f),
         new Vector3(-115f, -75f, 0f)
     };
-
+    
     // Start is called before the first frame update
     void Start()
     {
         dice = FindObjectOfType<Dice>();
-        if (dice != null)
+       
+    }
+   
+    void Update()
+    {
+       
+        if (dice.Rolled)
         {
+            Debug.Log("DIce Rolled");
             RollAndMovePlayer();
-        }
-        else
-        {
-            Debug.LogError("Dice component not found on any GameObjects.");
+            dice.Rolled = false;
         }
     }
+
+
 
     public void RollAndMovePlayer()
     {
