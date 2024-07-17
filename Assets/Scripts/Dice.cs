@@ -11,6 +11,8 @@ namespace DefaultNamespace
     {
         public List<Sprite> pointImage;
         public bool canRoll;
+        public bool BotRoll;
+        private int lastRollResult;
 
         private void Start()
         {
@@ -19,9 +21,9 @@ namespace DefaultNamespace
 
         public void Play()
         {
-            var rollPoint = Roll();
-
-            //玩家移动
+            Debug.Log("Play called");
+            lastRollResult = Roll();
+            Debug.Log("Roll result inside Play: " + lastRollResult);
         }
 
         [Button]
@@ -30,28 +32,25 @@ namespace DefaultNamespace
             if (!canRoll) return -1;
 
             canRoll = false;
-            DOVirtual.DelayedCall(8f, () => { canRoll = true; });
-
             var result = Random.Range(1, 7);
-
             var animationList = new List<int>();
             for (var i = 0; i < 5; i++)
             {
                 var randomValue = Random.Range(1, 7);
                 animationList.Add(randomValue);
             }
-
             animationList.Add(result);
 
             PlayRollAnimation(animationList);
 
+            lastRollResult = result;
+            DOVirtual.DelayedCall(8f, () => { canRoll = true; });
             return result;
         }
 
         private void PlayRollAnimation(List<int> animationList)
         {
             var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
             StartCoroutine(ChangeImage(0, animationList, spriteRenderer));
         }
 
@@ -63,8 +62,12 @@ namespace DefaultNamespace
             spriteRenderer.sprite = pointImage[currentIndex];
 
             yield return new WaitForSeconds(0.1f + count * 0.1f);
-
             StartCoroutine(ChangeImage(count + 1, animationList, spriteRenderer));
+        }
+
+        public int GetLastRollResult()
+        {
+            return lastRollResult;
         }
     }
 }
