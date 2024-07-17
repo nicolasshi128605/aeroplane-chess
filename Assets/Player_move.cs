@@ -49,8 +49,7 @@ public class Player_move : MonoBehaviour
         dice = FindObjectOfType<Dice>();
         if (dice != null)
         {
-            // You can call RollAndMovePlayer here if you want to start with a roll
-            // RollAndMovePlayer();
+            RollAndMovePlayer();
         }
         else
         {
@@ -70,19 +69,19 @@ public class Player_move : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Invalid roll point: " + rollPoint);
+            Debug.LogError("It is not your turn yet!");
         }
     }
 
     void MovePlayer(int rollPoint)
     {
-        Sequence moveSequence = DOTween.Sequence();
+
         for (var i = 0; i < rollPoint; i++)
         {
             CurrentLocation = (CurrentLocation + 1) % moveLocations.Length;
-            moveSequence.Append(transform.DOLocalMove(moveLocations[CurrentLocation], 1f).SetEase(Ease.Linear));
+            transform.DOLocalMove(moveLocations[CurrentLocation], 1f).SetEase(Ease.Linear);
         }
-        moveSequence.Play();
+
         Debug.Log("Player moved to location: " + transform.position);
     }
 }

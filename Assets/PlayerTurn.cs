@@ -12,6 +12,7 @@
 //             if(turn)
 //             {
 //                 canRoll = true;
+//                 turn = false;
 //             }else{
 //                 
 //             }

@@ -21,9 +21,7 @@ namespace DefaultNamespace
 
         public void Play()
         {
-            Debug.Log("Play called");
-            lastRollResult = Roll();
-            Debug.Log("Roll result inside Play: " + lastRollResult);
+           
         }
 
         [Button]
