@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using TreeEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace DefaultNamespace
@@ -11,17 +13,25 @@ namespace DefaultNamespace
     {
         public List<Sprite> pointImage;
         public bool canRoll;
-        public bool Rolled=false;
         public bool BotRoll;
         private int lastRollResult;
 
+        public Button rollButton;
+
+        public Player_move playerMove;
+        public Player_move botMove;
+
+        public bool isPlayerMoving;
+
         private void Start()
         {
+            rollButton.interactable = true;
             canRoll = true;
+            isPlayerMoving = true;
         }
 
         public void Play()
-        { 
+        {
             Roll();
         }
 
@@ -29,9 +39,9 @@ namespace DefaultNamespace
         public int Roll()
         {
             Debug.Log("Rolled set to true");
-            Rolled = true;
             if (!canRoll) return -1;
 
+            rollButton.interactable = false;
             canRoll = false;
             var result = Random.Range(1, 7);
             var animationList = new List<int>();
@@ -40,12 +50,17 @@ namespace DefaultNamespace
                 var randomValue = Random.Range(1, 7);
                 animationList.Add(randomValue);
             }
+
             animationList.Add(result);
 
             PlayRollAnimation(animationList);
 
             lastRollResult = result;
-            DOVirtual.DelayedCall(8f, () => { canRoll = true; });
+            DOVirtual.DelayedCall(5f, () =>
+            {
+                rollButton.interactable = true;
+                canRoll = true;
+            });
             return result;
         }
 
@@ -57,7 +72,12 @@ namespace DefaultNamespace
 
         private IEnumerator ChangeImage(int count, List<int> animationList, SpriteRenderer spriteRenderer)
         {
-            if (count == animationList.Count) yield break;
+            if (count == animationList.Count)
+            {
+                TryMove(animationList[^1]);
+                PlayRollEndEffect();
+                yield break;
+            }
 
             var currentIndex = animationList[count] - 1;
             spriteRenderer.sprite = pointImage[currentIndex];
@@ -69,6 +89,38 @@ namespace DefaultNamespace
         public int GetLastRollResult()
         {
             return lastRollResult;
+        }
+
+        public void PlayRollEndEffect()
+        {
+            transform.DOScale(1.5f, 0.2f).OnComplete(() =>
+            {
+                transform.DOScale(1f, 0.2f);
+            });
+        }
+
+        public void TryMove(int movePoint)
+        {
+            if (isPlayerMoving)
+            {
+                MovePlayer(movePoint);
+            }
+            else
+            {
+                MoveBot(movePoint);
+            }
+        }
+
+        public void MovePlayer(int movePoint)
+        {
+            isPlayerMoving = !isPlayerMoving;
+            playerMove.MovePlayer(movePoint);
+        }
+
+        public void MoveBot(int movePoint)
+        {
+            isPlayerMoving = !isPlayerMoving;
+            Debug.Log("Bot Moving");
         }
     }
 }

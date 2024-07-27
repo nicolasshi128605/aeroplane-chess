@@ -53,34 +53,27 @@ public class Player_move : MonoBehaviour
    
     void Update()
     {
-       
-        if (dice.Rolled)
-        {
-            Debug.Log("DIce Rolled");
-            RollAndMovePlayer();
-            dice.Rolled = false;
-        }
     }
 
 
 
-    public void RollAndMovePlayer()
-    {
-        Debug.Log("RollAndMovePlayer called");
-        dice.Play();
-        int rollPoint = dice.GetLastRollResult();
-        Debug.Log("Last roll result: " + rollPoint);
-        if (rollPoint > 0)
-        {
-            MovePlayer(rollPoint);
-        }
-        else
-        {
-            Debug.LogError("It is not your turn yet!");
-        }
-    }
+    // public void RollAndMovePlayer()
+    // {
+    //     Debug.Log("RollAndMovePlayer called");
+    //     dice.Play();
+    //     int rollPoint = dice.GetLastRollResult();
+    //     Debug.Log("Last roll result: " + rollPoint);
+    //     if (rollPoint > 0)
+    //     {
+    //         MovePlayer(rollPoint);
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("It is not your turn yet!");
+    //     }
+    // }
 
-    void MovePlayer(int rollPoint)
+    public void MovePlayer(int rollPoint)
     {
 
         for (var i = 0; i < rollPoint; i++)
