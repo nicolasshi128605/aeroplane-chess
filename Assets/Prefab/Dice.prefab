@@ -46,13 +46,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointImage:
-  - {fileID: 21300000, guid: 59a904121a7e944c091973173408833f, type: 3}
-  - {fileID: 21300000, guid: 283d8d7e01d42430fbf4b32726cd05c9, type: 3}
-  - {fileID: 21300000, guid: 751aa1b6637101946b2fdbb7aa27d6ad, type: 3}
-  - {fileID: 21300000, guid: ff7bfa7addf40784d86f62b8e4a034a6, type: 3}
-  - {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
-  - {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
+  - {fileID: 21300000, guid: fa2ed0e7ff00440daa6ec019dd2349cd, type: 3}
+  - {fileID: 21300000, guid: 797e49a8f19814774988516e3500fbe6, type: 3}
+  - {fileID: 21300000, guid: c60d89dc67555444b9c446565bc39107, type: 3}
+  - {fileID: 21300000, guid: 9ddbeb91d2ba84b6b9af5eebfdacfeb0, type: 3}
+  - {fileID: 21300000, guid: a5e473d2f8aa04f50b407b3b57b0a249, type: 3}
+  - {fileID: 21300000, guid: 1514f7f2247ab475cbfb0cd72f00adfe, type: 3}
   canRoll: 0
+  BotRoll: 0
+  rollButton: {fileID: 0}
+  playerMove: {fileID: 0}
+  botMove: {fileID: 0}
+  isPlayerMoving: 0
 --- !u!1 &8151991194706929042
 GameObject:
   m_ObjectHideFlags: 0
