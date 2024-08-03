@@ -114,7 +114,8 @@ namespace DefaultNamespace
         public void MovePlayer(int movePoint)
         {
             isPlayerMoving = !isPlayerMoving;
-            playerMove.MovePlayer(movePoint);
+            StartCoroutine(playerMove.MovePlayerCoroutine(movePoint));
+            //playerMove.MovePlayer(movePoint);
         }
 
         public void MoveBot(int movePoint)
