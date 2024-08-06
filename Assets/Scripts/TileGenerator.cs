@@ -7,7 +7,7 @@ public class TileGenerator : MonoBehaviour
     public int numberToGenerated;
 
     private void Awake()
-    {
+    { 
         GenerateTiles();
     }
 
