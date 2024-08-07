@@ -98,6 +98,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLocation: 0
+  upImage: {fileID: 21300000, guid: 689e159729f134703a08fbacb7ee6e46, type: 3}
+  downImage: {fileID: 21300000, guid: 3458700aedaaa4ec6b8ee0f81cffd747, type: 3}
+  leftImage: {fileID: 21300000, guid: 0b0a163d9ce5f4cf2b644eb29ca217a4, type: 3}
+  rightImage: {fileID: 21300000, guid: 5bca5ea2b721b4af4ab55c68bee60300, type: 3}
   moveLocations:
   - {x: 75, y: 115, z: 0}
   - {x: 45, y: 115, z: 0}
@@ -123,3 +127,4 @@ MonoBehaviour:
   - {x: -115, y: -15, z: 0}
   - {x: -115, y: -45, z: 0}
   - {x: -115, y: -75, z: 0}
+  spriteRenderer: {fileID: 8504679683123099087}
