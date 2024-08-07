@@ -121,7 +121,7 @@ namespace DefaultNamespace
         public void MoveBot(int movePoint)
         {
             isPlayerMoving = !isPlayerMoving;
-            Debug.Log("Bot Moving");
+            StartCoroutine(botMove.MovePlayerCoroutine(movePoint));
         }
     }
 }
