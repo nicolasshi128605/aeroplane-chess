@@ -32,5 +32,12 @@ public class TileGenerator : MonoBehaviour
                     Quaternion.identity, transform);
             }
         }
+        
+        
+        
+        
+        
+        
+        
     }
 }

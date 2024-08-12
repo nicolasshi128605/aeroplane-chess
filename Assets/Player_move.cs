@@ -33,7 +33,7 @@ public class Player_move : MonoBehaviour
     
     private void Awake()
     {
-        //todo 添加新增的格子坐标，并摆好格子位置
+        
         moveLocations = new Vector3[]
         {
             // First set of tiles (j == 0)
