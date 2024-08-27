@@ -14,24 +14,16 @@ public class TileGenerator : MonoBehaviour
 
     public void GenerateTiles()
     {
-        for (var j = 0; j < 2; j++)
+        for (var j = 0; j < 4; j++)  // 4 rows
         {
-            for (var i = 0; i < 8; i++)
+            for (var i = 0; i < 6; i++)  // 6 tiles per row
             {
-                var tile = Instantiate(tileToGenerated, new Vector3(550 - 150 * i, j == 0 ? 575 : -575, 0f) / 5f,
+                var tile = Instantiate(tileToGenerated, new Vector3(550 - 150 * i, 375 - 150 * j, 0f) / 5f,
                     Quaternion.identity, transform);
                 tile.ChangeColor(i);
             }
         }
 
-        for (var j = 0; j < 2; j++)
-        {
-            for (var i = 0; i < 6; i++)
-            {
-                var tile = Instantiate(tileToGenerated, new Vector3(j == 0 ? 550 : -550, 375 - 150 * i, 0f) / 5f,
-                    Quaternion.identity, transform);
-            }
-        }
         
         
         
