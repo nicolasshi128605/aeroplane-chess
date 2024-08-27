@@ -18,8 +18,8 @@ public class PlayerSpawner : MonoBehaviour
     {
         Vector3[] spawnPositions = new Vector3[]
         {
-            new Vector3(115f, 115f, 0f), // Top-right corner
-            new Vector3(-115f, -115f, 0f) // Bottom-left corner
+            new Vector3(275f, 275f, 0f),   // Top-right corner
+            new Vector3(-275f, -275f, 0f)  // Bottom-left corner
         };
 
         for (var index = 0; index < spawnPositions.Length; index++)
