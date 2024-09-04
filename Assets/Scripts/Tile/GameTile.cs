@@ -1,5 +1,6 @@
 using System;
 using DefaultNamespace.Enums;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Tile
@@ -22,6 +23,46 @@ namespace Tile
         private void Awake()
         {
             Init();
+        }
+
+        public void SetPlayerHere(Player.Player player)
+        {
+            player.transform.position = transform.position;
+            if (upTile != null && upTile == nextGameTile)
+            {
+                player.ChangeToUp();
+            }
+            else if (downTile != null && downTile == nextGameTile)
+            {
+                player.ChangeToDown();
+            }
+            else if (leftTile != null && leftTile == nextGameTile)
+            {
+                player.ChangeToLeft();
+            }
+            else if (rightTile != null && rightTile == nextGameTile)
+            {
+                player.ChangeToRight();
+            }
+
+            player.currentTIle = this;
+        }
+
+        public void MovePlayerToNextTile(int remainingMoveStep, Player.Player player)
+        {
+            if (remainingMoveStep > 0)
+            {
+                player.transform.DOMove(nextGameTile.transform.position, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+                {
+                    nextGameTile.SetPlayerHere(player);
+                    remainingMoveStep -= 1;
+                    nextGameTile.MovePlayerToNextTile(remainingMoveStep, player);
+                });
+            }
+            else
+            {
+                SetPlayerHere(player);
+            }
         }
 
         private void Init()
