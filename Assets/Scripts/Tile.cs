@@ -1,35 +1,18 @@
-using System;
-using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Tile : MonoBehaviour
 {
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         
     }
 
-    public void ChangeColor(int i)
+    // Update is called once per frame
+    void Update()
     {
-        var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        // spriteRenderer.color = (i % 4) switch
-        // {
-        //     0 => new Color(1f, 0f, 0f, 0.5f),
-        //     1 => Color.blue,
-        //     2 => Color.green,
-        //     3 => Color.yellow,
-        //     _ => spriteRenderer.color
-        // };
-        var randomValue = Random.Range(0, 4);
-
-        spriteRenderer.color = (randomValue switch
-        {
-            0 => new Color(1f, 0f, 0f, 0.5f),
-            1 => Color.blue,
-            2 => Color.green,
-            3 => Color.yellow,
-            _ => spriteRenderer.color
-        });
+        
     }
 }
