@@ -11,6 +11,7 @@ namespace Player
         public Sprite downImage;
         public Sprite leftImage;
         public Sprite rightImage;
+        public PlayerCardManager playerCardManager;
 
         public GameTile currentTIle;
 
