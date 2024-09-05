@@ -1,6 +1,7 @@
 using System;
 using DefaultNamespace.Enums;
 using DG.Tweening;
+using Enums;
 using UnityEngine;
 
 namespace Tile
@@ -62,6 +63,14 @@ namespace Tile
             else
             {
                 SetPlayerHere(player);
+                if (player.isPlayer)
+                {
+                    EventCenter.GetInstance().EventTrigger(Events.PlayerTurnEnd);
+                }
+                else
+                {
+                    EventCenter.GetInstance().EventTrigger(Events.BotTurnEnd);
+                }
             }
         }
 

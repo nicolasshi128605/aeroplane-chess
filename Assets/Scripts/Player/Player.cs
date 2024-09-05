@@ -14,10 +14,19 @@ namespace Player
         public PlayerCardManager playerCardManager;
 
         public GameTile currentTIle;
+        public bool isPlayer;
 
-        private void Awake()
+        public void Init(bool isPlayer)
         {
-            EventCenter.GetInstance().AddEventListener<int>(Events.PlayerRollDice, PlayerMove);
+            this.isPlayer = isPlayer;
+            if (isPlayer)
+            {
+                EventCenter.GetInstance().AddEventListener<int>(Events.PlayerRollDice, PlayerMove);
+            }
+            else
+            {
+                EventCenter.GetInstance().AddEventListener<int>(Events.BotRollDice, PlayerMove);
+            }
         }
 
         public void PlayerMove(int moveStep)
