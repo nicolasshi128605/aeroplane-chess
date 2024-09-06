@@ -5,6 +5,8 @@ namespace Enums
         GameStart,
         PlayerTurnStart,
         PlayerRollDice,
+        PlayerPlayCardStart,
+        PlayerPlayCardEnd,
         PlayerTurnEnd,
         BotTurnStart,
         BotRollDice,
