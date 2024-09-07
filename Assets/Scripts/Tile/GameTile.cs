@@ -26,7 +26,7 @@ namespace Tile
             Init();
         }
 
-        public void SetPlayerHere(Player.Player player)
+        public void SetPlayerHere(Player.Player player, bool triggerEffect = false)
         {
             player.transform.position = transform.position;
             if (upTile != null && upTile == nextGameTile)
@@ -46,7 +46,30 @@ namespace Tile
                 player.ChangeToRight();
             }
 
+            if (triggerEffect)
+            {
+                TileEffect();
+            }
+
             player.currentTIle = this;
+        }
+
+        private void TileEffect()
+        {
+            //todo 作业
+            switch (tileType)
+            {
+                case TileType.White:
+                    break;
+                case TileType.Red:
+                    break;
+                case TileType.Blue:
+                    break;
+                case TileType.Green:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public void MovePlayerToNextTile(int remainingMoveStep, Player.Player player)
@@ -62,7 +85,7 @@ namespace Tile
             }
             else
             {
-                SetPlayerHere(player);
+                SetPlayerHere(player, true);
                 if (player.isPlayer)
                 {
                     EventCenter.GetInstance().EventTrigger(Events.PlayerTurnEnd);
