@@ -3611,6 +3611,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: nextGameTile
       value: 
       objectReference: {fileID: 582441622}
