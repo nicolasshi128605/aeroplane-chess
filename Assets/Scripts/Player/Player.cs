@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Enums;
+using Managers;
 using Tile;
 using UnityEngine;
 
@@ -16,12 +18,15 @@ namespace Player
         public GameTile currentTIle;
         public bool isPlayer;
 
+        public List<string> cardInHand = new List<string>();
+
         public void Init(bool isPlayer)
         {
             this.isPlayer = isPlayer;
             if (isPlayer)
             {
                 EventCenter.GetInstance().AddEventListener<int>(Events.PlayerRollDice, PlayerMove);
+                Global.Player = this;
             }
             else
             {

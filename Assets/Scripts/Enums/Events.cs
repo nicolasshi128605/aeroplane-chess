@@ -11,6 +11,7 @@ namespace Enums
         BotTurnStart,
         BotRollDice,
         BotTurnEnd,
-        GameEnd
+        GameEnd,
+        UpdateCardInHandUI
     }
 }
