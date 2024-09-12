@@ -88,7 +88,7 @@ namespace Tile
                 SetPlayerHere(player, true);
                 if (player.isPlayer)
                 {
-                    EventCenter.GetInstance().EventTrigger(Events.PlayerTurnEnd);
+                    EventCenter.GetInstance().EventTrigger(Events.PlayerPlayCardStart);
                 }
                 else
                 {

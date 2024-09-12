@@ -3766,6 +3766,7 @@ GameObject:
   - component: {fileID: 2006207078}
   - component: {fileID: 2006207079}
   - component: {fileID: 2006207080}
+  - component: {fileID: 2006207081}
   m_Layer: 5
   m_Name: CardDisplay
   m_TagString: Untagged
@@ -3832,6 +3833,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1317852358551662483, guid: b2301985eda519540af5c154196c3cf9, type: 3}
   currentCardsInHand: []
+  canvasGroup: {fileID: 2006207081}
+--- !u!225 &2006207081
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006207077}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &2007666414
 PrefabInstance:
   m_ObjectHideFlags: 0

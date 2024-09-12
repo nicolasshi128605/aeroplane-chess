@@ -11,26 +11,43 @@ namespace UI
 
         public List<CardUI> currentCardsInHand = new List<CardUI>();
 
+        public CanvasGroup canvasGroup;
+
         private void Awake()
         {
             EventCenter.GetInstance().AddEventListener(Events.UpdateCardInHandUI, UpdateUI);
+            EventCenter.GetInstance().AddEventListener(Events.PlayerPlayCardStart, Show);
+            EventCenter.GetInstance().AddEventListener(Events.PlayerPlayCardEnd, Hide);
+            Hide();
         }
 
         private void UpdateUI()
         {
             foreach (var cardUI in currentCardsInHand)
             {
-                Destroy(cardUI);
+                Destroy(cardUI.gameObject);
             }
 
             currentCardsInHand = new List<CardUI>();
 
-            foreach (var cardName in Global.Player.cardInHand)
+            for (var index = 0; index < Global.Player.playerCardManager.cardInHand.Count; index++)
             {
+                var cardName = Global.Player.playerCardManager.cardInHand[index];
                 var cardSo = Global.DeckManager.GetCardSo(cardName);
                 var cardUI = Instantiate(cardPrefab, transform);
-                cardUI.Init(cardSo);
+                cardUI.Init(cardSo, index);
+                currentCardsInHand.Add(cardUI);
             }
+        }
+
+        public void Show()
+        {
+            canvasGroup.alpha = 1f;
+        }
+
+        public void Hide()
+        {
+            canvasGroup.alpha = 0f;
         }
     }
 }

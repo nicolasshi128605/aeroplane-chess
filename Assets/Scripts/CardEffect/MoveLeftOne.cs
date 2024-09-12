@@ -6,7 +6,8 @@ namespace CardEffect
     {
         public override void ApplyCardEffect()
         {
-            Debug.Log("MoveDownOne");
+            Debug.Log("MoveLeftOne");
+            base.ApplyCardEffect();
         }
     }
 }

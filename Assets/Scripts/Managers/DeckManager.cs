@@ -36,7 +36,7 @@ namespace Managers
                 {
                     for (int i = 0; i < 3; i++)
                     {
-                        Global.Player.cardInHand.Add(DrawACard());
+                        Global.Player.playerCardManager.cardInHand.Add(DrawACard());
                     }
 
                     EventCenter.GetInstance().EventTrigger(Events.UpdateCardInHandUI);
