@@ -18,8 +18,6 @@ namespace Player
         public GameTile currentTIle;
         public bool isPlayer;
 
-        public List<string> cardInHand = new List<string>();
-
         public void Init(bool isPlayer)
         {
             this.isPlayer = isPlayer;

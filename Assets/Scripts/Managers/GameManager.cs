@@ -22,6 +22,12 @@ namespace Managers
             EventCenter.GetInstance().AddEventListener(Events.GameStart, SpawnPlayer);
             EventCenter.GetInstance().AddEventListener(Events.PlayerTurnEnd, BotTurnStart);
             EventCenter.GetInstance().AddEventListener(Events.BotTurnEnd, PlayerTurnStart);
+            EventCenter.GetInstance().AddEventListener(Events.PlayerPlayCardEnd,
+                () =>
+                {
+                    DOVirtual.DelayedCall(0.5f,
+                        () => { EventCenter.GetInstance().EventTrigger(Events.PlayerTurnEnd); });
+                });
         }
 
         private void Start()
@@ -43,14 +49,14 @@ namespace Managers
         private void SpawnPlayer()
         {
             var player = Instantiate(playerPrefab);
-            AttachAllCardScripts(player);
             player.Init(true);
             playerStartTile.SetPlayerHere(player);
+            AttachAllCardScripts(player);
 
             var bot = Instantiate(playerPrefab);
-            AttachAllCardScripts(bot);
             bot.Init(false);
             botStartTile.SetPlayerHere(bot);
+            AttachAllCardScripts(bot);
         }
 
         private void AttachAllCardScripts(Player.Player player)
@@ -78,6 +84,8 @@ namespace Managers
                     player.playerCardManager.gameObject.AddComponent(type);
                 }
             }
+
+            Global.Player.playerCardManager.LoadAllCards();
         }
 
         private static Type GetTypeByName(string className)
