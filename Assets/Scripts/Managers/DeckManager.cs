@@ -77,5 +77,11 @@ namespace Managers
         {
             return _cardNameToCardSoDict[cardName];
         }
+
+        public void DrawACardToPlayHand()
+        {
+            Global.Player.playerCardManager.cardInHand.Add(DrawACard());
+            EventCenter.GetInstance().EventTrigger(Events.UpdateCardInHandUI);
+        }
     }
 }

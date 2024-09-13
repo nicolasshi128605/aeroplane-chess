@@ -57,7 +57,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9ddbeb91d2ba84b6b9af5eebfdacfeb0, type: 3}
   - {fileID: 21300000, guid: a5e473d2f8aa04f50b407b3b57b0a249, type: 3}
   - {fileID: 21300000, guid: 1514f7f2247ab475cbfb0cd72f00adfe, type: 3}
-  unknownImage: {fileID: 21300000, guid: ba819174422bfeb4bac57853e95cc8d2, type: 3}
+  unknownImage: {fileID: 21300000, guid: ce290ade0c4f8d146aaeef139b5bd62d, type: 3}
   image: {fileID: 8102024167406519220}
   canvasGroup: {fileID: 4023547888152793689}
   playerRollButton: {fileID: 0}
