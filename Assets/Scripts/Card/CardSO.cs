@@ -6,5 +6,8 @@ namespace Card
     public class CardSO : ScriptableObject
     {
         public string cardName;
+        public string displayName;
+        public Sprite image;
+        public string description;
     }
 }

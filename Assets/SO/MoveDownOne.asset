@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: MoveDownOne
   m_EditorClassIdentifier: 
   cardName: MoveDownOne
+  displayName: Down!
+  image: {fileID: 21300000, guid: 3acd8d445bc88f547a8d43d9bd313ccf, type: 3}
+  description: Move the player to the tile below

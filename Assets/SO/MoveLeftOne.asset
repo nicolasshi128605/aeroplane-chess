@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: MoveLeftOne
   m_EditorClassIdentifier: 
   cardName: MoveLeftOne
+  displayName: Left!
+  image: {fileID: 21300000, guid: ebd50b12e871e0142afe371f911d8eb2, type: 3}
+  description: Move the player to the tile left
