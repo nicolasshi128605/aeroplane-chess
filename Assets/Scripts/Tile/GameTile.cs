@@ -51,6 +51,11 @@ namespace Tile
             }
 
             TileShake();
+            EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+            {
+                name = "step",
+                volume = 0.3f
+            });
 
             if (triggerEffect)
             {
@@ -84,10 +89,20 @@ namespace Tile
                 case TileType.Blue:
                     waitTime = 1.2f;
                     player.PlayTeleportEffectUp();
+                    EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+                    {
+                        name = "Teleport",
+                        volume = 1f
+                    });
                     DOVirtual.DelayedCall(0.51f, () =>
                     {
                         player.PlayTeleportEffectDown();
                         teleportTile.SetPlayerHere(player);
+                        EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+                        {
+                            name = "Teleport",
+                            volume = 1f
+                        });
                     });
                     Debug.Log("Player teleported to the target location from a blue tile!");
                     break;

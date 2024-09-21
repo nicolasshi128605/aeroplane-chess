@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Enums;
+using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -76,6 +77,11 @@ namespace UI
 
         public void RollADice()
         {
+            EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+            {
+                name = "DiceClick",
+                volume = 1f
+            });
             var rollResult = Random.Range(1, 7);
             var numberList = GenerateRandomList(10);
             numberList.Add(rollResult);
@@ -104,6 +110,11 @@ namespace UI
 
             DOVirtual.DelayedCall(2f, () =>
             {
+                EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+                {
+                    name = "DiceDone",
+                    volume = 1f
+                });
                 if (isPlayerDice)
                 {
                     EventCenter.GetInstance().EventTrigger(Events.PlayerRollDice, rollResult);
