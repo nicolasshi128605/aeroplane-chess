@@ -17,15 +17,15 @@ namespace Attack
         public void PlayAttack()
         {
             //appear
-            horizontalAttack.transform.localScale = new Vector3(100f, 1f, 1f);
-            verticalAttack.transform.localScale = new Vector3(1f, 100f, 1f);
+            horizontalAttack.transform.localScale = new Vector3(100f, 0.5f, 1f);
+            verticalAttack.transform.localScale = new Vector3(0.5f, 100f, 1f);
             horizontalAttack.DOFade(1f, 0.1f).From(0f);
             verticalAttack.DOFade(1f, 0.1f).From(0f);
 
 
             //disappear
-            horizontalAttack.transform.DOScaleY(0f, 1f).SetDelay(0.5f);
-            verticalAttack.transform.DOScaleX(0f, 1f).SetDelay(0.5f);
+            horizontalAttack.transform.DOScaleY(0f, 0.6f).SetDelay(0.2f).SetEase(Ease.InCubic);
+            verticalAttack.transform.DOScaleX(0f, 0.6f).SetDelay(0.2f).SetEase(Ease.InCubic);
         }
     }
 }
