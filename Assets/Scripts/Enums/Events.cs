@@ -14,6 +14,7 @@ namespace Enums
         BotAttack,
         BotTurnEnd,
         GameEnd,
-        UpdateCardInHandUI
+        UpdateCardInHandUI,
+        UpdateHpUI,
     }
 }

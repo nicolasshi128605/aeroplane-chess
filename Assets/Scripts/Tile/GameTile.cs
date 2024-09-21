@@ -98,7 +98,7 @@ namespace Tile
                 }
                 else
                 {
-                    DOVirtual.DelayedCall(0.2f, () =>
+                    DOVirtual.DelayedCall(0.5f, () =>
                     {
                         EventCenter.GetInstance().EventTrigger(Events.BotAttack);
                     });

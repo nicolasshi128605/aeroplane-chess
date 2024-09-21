@@ -27,7 +27,7 @@ namespace Managers
             EventCenter.GetInstance().AddEventListener(Events.PlayerPlayCardEnd,
                 () =>
                 {
-                    DOVirtual.DelayedCall(0.2f,
+                    DOVirtual.DelayedCall(0.5f,
                         () => { EventCenter.GetInstance().EventTrigger(Events.PlayerAttack); });
                 });
 
@@ -75,6 +75,8 @@ namespace Managers
             bot.Init(false);
             botStartTile.SetPlayerHere(bot);
             AttachAllCardScripts(bot);
+
+            EventCenter.GetInstance().EventTrigger(Events.UpdateHpUI);
         }
 
         private void AttachAllCardScripts(Player.Player player)
@@ -151,7 +153,7 @@ namespace Managers
                 nextDownTile = nextDownTile.downTile;
             }
 
-            var nextLeftTile = tile.downTile;
+            var nextLeftTile = tile.leftTile;
             while (nextLeftTile != null)
             {
                 if (target.currentTIle == nextLeftTile)
@@ -163,7 +165,7 @@ namespace Managers
                 nextLeftTile = nextLeftTile.leftTile;
             }
 
-            var nextRightTile = tile.downTile;
+            var nextRightTile = tile.rightTile;
             while (nextRightTile != null)
             {
                 if (target.currentTIle == nextRightTile)
