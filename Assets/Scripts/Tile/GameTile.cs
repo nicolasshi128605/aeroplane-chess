@@ -82,6 +82,7 @@ namespace Tile
         {
             if (remainingMoveStep > 0)
             {
+                player.Jump(0.5f);
                 player.transform.DOMove(nextGameTile.transform.position, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
                 {
                     nextGameTile.SetPlayerHere(player);
