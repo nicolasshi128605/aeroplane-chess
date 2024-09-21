@@ -50,10 +50,20 @@ namespace Tile
                 player.ChangeToRight();
             }
 
+            TileShake();
+
             if (triggerEffect)
             {
                 TileEffect(player);
             }
+        }
+
+        public void TileShake()
+        {
+            image.transform.DOLocalMoveY(-0.2f, 0.15f).SetEase(Ease.OutSine).OnComplete(() =>
+            {
+                image.transform.DOLocalMoveY(0f, 0.15f).SetEase(Ease.InSine);
+            });
         }
 
         private void TileEffect(Player.Player player)
