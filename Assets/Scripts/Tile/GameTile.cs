@@ -17,6 +17,8 @@ namespace Tile
         public GameTile downTile;
         public GameTile leftTile;
         public GameTile rightTile;
+        
+        public GameTile teleportTile;
 
         public float rayDistance = 1f;
         public LayerMask tileLayerMask;
@@ -48,13 +50,13 @@ namespace Tile
 
             if (triggerEffect)
             {
-                TileEffect();
+                TileEffect(player);
             }
 
             player.currentTIle = this;
         }
 
-        private void TileEffect()
+        private void TileEffect(Player.Player player)
         {
             //todo 作业
             switch (tileType)
@@ -64,8 +66,16 @@ namespace Tile
                 case TileType.Red:
                     break;
                 case TileType.Blue:
+                    player.transform.position = teleportTile.transform.position;
+                
+                    // Set the player's current tile to the teleport destination
+                    player.currentTIle = teleportTile;
+
+                    Debug.Log("Player teleported to the target location from a blue tile!");
                     break;
                 case TileType.Green:
+                    player.HPadd();
+                    Debug.Log("Player stepped on a green tile! HP increased by 1.");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
