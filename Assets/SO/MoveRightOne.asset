@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: MoveRightOne
   m_EditorClassIdentifier: 
   cardName: MoveRightOne
+  displayName: Right
+  image: {fileID: 21300000, guid: 184a260157178b2468cd651a8efbc251, type: 3}
+  description: Move the player to the tile right

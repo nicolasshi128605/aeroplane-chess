@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using Enums;
 using Managers;
 using UnityEngine;
@@ -15,10 +16,31 @@ namespace UI
 
         private void Awake()
         {
+            Global.CardDisplayManager = this;
             EventCenter.GetInstance().AddEventListener(Events.UpdateCardInHandUI, UpdateUI);
             EventCenter.GetInstance().AddEventListener(Events.PlayerPlayCardStart, Show);
             EventCenter.GetInstance().AddEventListener(Events.PlayerPlayCardEnd, Hide);
+            EventCenter.GetInstance().AddEventListener(Events.PlayerDrawCard, PlayDrawAnimation);
             Hide();
+        }
+
+        public void StartEffect()
+        {
+            foreach (var card in currentCardsInHand)
+            {
+                card.gameObject.SetActive(false);
+            }
+
+            for (var index = 0; index < currentCardsInHand.Count; index++)
+            {
+                var card = currentCardsInHand[index];
+                DOVirtual.DelayedCall(0.2f * index, () =>
+                {
+                    card.gameObject.SetActive(true);
+                    card.transform.DOLocalMoveY(0f, 1f).From(-200f).SetEase(Ease.OutBack);
+                    card.canvasGroup.DOFade(1f, 0.5f).From(0f);
+                });
+            }
         }
 
         private void UpdateUI()
@@ -40,6 +62,12 @@ namespace UI
             }
         }
 
+        public void PlayDrawAnimation()
+        {
+            currentCardsInHand[^1].transform.DOLocalMoveY(0f, 1f).From(-200f).SetEase(Ease.OutBack);
+            currentCardsInHand[^1].canvasGroup.DOFade(1f, 0.5f).From(0f);
+        }
+
         public void Show()
         {
             canvasGroup.alpha = 1f;
@@ -49,7 +77,7 @@ namespace UI
 
         public void Hide()
         {
-            canvasGroup.alpha = 0f;
+            canvasGroup.alpha = 0.3f;
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
         }

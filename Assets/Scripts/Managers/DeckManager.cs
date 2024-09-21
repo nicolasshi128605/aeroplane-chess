@@ -29,7 +29,6 @@ namespace Managers
             Global.DeckManager = this;
             EventCenter.GetInstance().AddEventListener(Events.GameStart, Init);
 
-            //todo 
             EventCenter.GetInstance().AddEventListener(Events.GameStart, () =>
             {
                 DOVirtual.DelayedCall(0.5f, () =>
@@ -40,6 +39,7 @@ namespace Managers
                     }
 
                     EventCenter.GetInstance().EventTrigger(Events.UpdateCardInHandUI);
+                    Global.CardDisplayManager.StartEffect();
                 });
             });
         }
@@ -80,8 +80,10 @@ namespace Managers
 
         public void DrawACardToPlayHand()
         {
+            if (Global.Player.playerCardManager.cardInHand.Count >= 7) return;
             Global.Player.playerCardManager.cardInHand.Add(DrawACard());
             EventCenter.GetInstance().EventTrigger(Events.UpdateCardInHandUI);
+            EventCenter.GetInstance().EventTrigger(Events.PlayerDrawCard);
         }
     }
 }

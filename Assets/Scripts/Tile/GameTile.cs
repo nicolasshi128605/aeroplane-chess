@@ -74,7 +74,12 @@ namespace Tile
                 case TileType.White:
                     break;
                 case TileType.Red:
-                    Global.DeckManager.DrawACardToPlayHand();
+                    if (player.isPlayer)
+                    {
+                        Global.DeckManager.DrawACardToPlayHand();
+                        waitTime = 1.2f;
+                    }
+
                     break;
                 case TileType.Blue:
                     waitTime = 1.2f;
