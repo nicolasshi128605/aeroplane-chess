@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Enums;
 using Managers;
 using Tile;
@@ -30,6 +29,7 @@ namespace Player
             else
             {
                 EventCenter.GetInstance().AddEventListener<int>(Events.BotRollDice, PlayerMove);
+                Global.Bot = this;
             }
         }
 
@@ -42,9 +42,24 @@ namespace Player
         {
             image.sprite = upImage;
         }
-        public void HPadd()
+
+        public void Heal(int healAmount)
         {
-            hp++;
+            hp += healAmount;
+        }
+
+        public void TakeDamage(int damageAmount)
+        {
+            hp -= damageAmount;
+
+            CheckDeath();
+        }
+
+        public void CheckDeath()
+        {
+            if (hp <= 0)
+            {
+            }
         }
 
         public void ChangeToDown()

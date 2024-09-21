@@ -2,6 +2,7 @@ using System;
 using DefaultNamespace.Enums;
 using DG.Tweening;
 using Enums;
+using Managers;
 using UnityEngine;
 
 namespace Tile
@@ -17,7 +18,7 @@ namespace Tile
         public GameTile downTile;
         public GameTile leftTile;
         public GameTile rightTile;
-        
+
         public GameTile teleportTile;
 
         public float rayDistance = 1f;
@@ -31,6 +32,7 @@ namespace Tile
         public void SetPlayerHere(Player.Player player, bool triggerEffect = false)
         {
             player.transform.position = transform.position;
+            player.currentTIle = this;
             if (upTile != null && upTile == nextGameTile)
             {
                 player.ChangeToUp();
@@ -52,29 +54,23 @@ namespace Tile
             {
                 TileEffect(player);
             }
-
-            player.currentTIle = this;
         }
 
         private void TileEffect(Player.Player player)
         {
-            //todo 作业
             switch (tileType)
             {
                 case TileType.White:
                     break;
                 case TileType.Red:
+                    Global.DeckManager.DrawACardToPlayHand();
                     break;
                 case TileType.Blue:
-                    player.transform.position = teleportTile.transform.position;
-                
-                    // Set the player's current tile to the teleport destination
-                    player.currentTIle = teleportTile;
-
+                    teleportTile.SetPlayerHere(player);
                     Debug.Log("Player teleported to the target location from a blue tile!");
                     break;
                 case TileType.Green:
-                    player.HPadd();
+                    player.Heal(1);
                     Debug.Log("Player stepped on a green tile! HP increased by 1.");
                     break;
                 default:
@@ -102,7 +98,10 @@ namespace Tile
                 }
                 else
                 {
-                    EventCenter.GetInstance().EventTrigger(Events.BotTurnEnd);
+                    DOVirtual.DelayedCall(0.2f, () =>
+                    {
+                        EventCenter.GetInstance().EventTrigger(Events.BotAttack);
+                    });
                 }
             }
         }

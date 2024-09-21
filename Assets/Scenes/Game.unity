@@ -187,6 +187,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1063849426}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 
       objectReference: {fileID: 1755237812}
@@ -481,6 +485,10 @@ PrefabInstance:
       propertyPath: leftTile
       value: 
       objectReference: {fileID: 489739573}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 
@@ -1118,6 +1126,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1882702583}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 
       objectReference: {fileID: 879615335}
@@ -1207,6 +1219,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 295006838}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 
       objectReference: {fileID: 1019105930}
@@ -1214,6 +1230,10 @@ PrefabInstance:
       propertyPath: nextGameTile
       value: 
       objectReference: {fileID: 1019105930}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: teleportTile
+      value: 
+      objectReference: {fileID: 588548187}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1459,7 +1479,7 @@ PrefabInstance:
       objectReference: {fileID: 711489983}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: tileType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
@@ -1472,7 +1492,7 @@ PrefabInstance:
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: teleportTile
       value: 
-      objectReference: {fileID: 588548187}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1563,6 +1583,10 @@ PrefabInstance:
       propertyPath: leftTile
       value: 
       objectReference: {fileID: 711489983}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 
@@ -2296,7 +2320,7 @@ PrefabInstance:
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: teleportTile
       value: 
-      objectReference: {fileID: 295006838}
+      objectReference: {fileID: 177704808}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2548,6 +2572,7 @@ MonoBehaviour:
   playerStartTile: {fileID: 751396485}
   botStartTile: {fileID: 295006838}
   playerPrefab: {fileID: 96375047787084147, guid: dccd40186d57dc744a87c1810c8df64a, type: 3}
+  attackPrefab: {fileID: 539323925055635928, guid: 09c7d4180e238a14586c5acc5fa5c15f, type: 3}
 --- !u!114 &730510984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3021,6 +3046,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 177704808}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 
       objectReference: {fileID: 1685259176}
@@ -3202,6 +3231,10 @@ PrefabInstance:
       propertyPath: leftTile
       value: 
       objectReference: {fileID: 111303113}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 
@@ -3626,6 +3659,10 @@ PrefabInstance:
       propertyPath: downTile
       value: 
       objectReference: {fileID: 103225138}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 
@@ -4062,6 +4099,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 62301501}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 
       objectReference: {fileID: 1489256411}
@@ -4273,6 +4314,10 @@ PrefabInstance:
       propertyPath: leftTile
       value: 
       objectReference: {fileID: 159870786}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 
@@ -4506,6 +4551,10 @@ PrefabInstance:
       propertyPath: leftTile
       value: 
       objectReference: {fileID: 588548187}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 
@@ -4824,6 +4873,10 @@ PrefabInstance:
       propertyPath: leftTile
       value: 
       objectReference: {fileID: 167257806}
+    - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
+      propertyPath: tileType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8316534385083865739, guid: 1d88d935a30e8b347a0864c64a8e74b4, type: 3}
       propertyPath: rightTile
       value: 

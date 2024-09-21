@@ -4,5 +4,6 @@ namespace Managers
     {
         public static DeckManager DeckManager;
         public static Player.Player Player;
+        public static Player.Player Bot;
     }
 }
