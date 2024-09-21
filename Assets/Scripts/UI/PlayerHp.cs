@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Enums;
 using Managers;
 using TMPro;
@@ -16,6 +17,7 @@ namespace UI
         private void Awake()
         {
             EventCenter.GetInstance().AddEventListener(Events.UpdateHpUI, UpdateUI);
+            EventCenter.GetInstance().AddEventListener<bool>(Events.ShakeHpUI, ShakeUI);
         }
 
         private void UpdateUI()
@@ -27,6 +29,14 @@ namespace UI
             fillImage.fillAmount = isPlayer
                 ? (float)Global.Player.hp / Global.Player.hpMax
                 : (float)Global.Bot.hp / Global.Bot.hpMax;
+        }
+
+        private void ShakeUI(bool isPlayerShake)
+        {
+            if (isPlayer == isPlayerShake)
+            {
+                transform.DOShakePosition(1f, 20f, 100);
+            }
         }
     }
 }

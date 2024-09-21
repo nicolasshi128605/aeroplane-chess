@@ -16,5 +16,6 @@ namespace Enums
         GameEnd,
         UpdateCardInHandUI,
         UpdateHpUI,
+        ShakeHpUI,
     }
 }

@@ -96,6 +96,10 @@ namespace Player
         {
             hp -= damageAmount;
             EventCenter.GetInstance().EventTrigger(Events.UpdateHpUI);
+            EventCenter.GetInstance().EventTrigger(Events.ShakeHpUI, isPlayer);
+            image.transform.DOShakePosition(0.8f, 0.5f, 100);
+            image.DOColor(new Color(1f, 0f, 0f, 1f), 0.2f);
+            DOVirtual.DelayedCall(0.4f, () => { image.DOColor(new Color(1f, 1f, 1f, 1f), 0.2f); });
             CheckDeath();
         }
 
