@@ -7,9 +7,11 @@ namespace Enums
         PlayerRollDice,
         PlayerPlayCardStart,
         PlayerPlayCardEnd,
+        PlayerAttack,
         PlayerTurnEnd,
         BotTurnStart,
         BotRollDice,
+        BotAttack,
         BotTurnEnd,
         GameEnd,
         UpdateCardInHandUI
