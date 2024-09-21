@@ -18,6 +18,7 @@ namespace Player
         public GameTile currentTIle;
         public bool isPlayer;
 
+        public int hp = 7;
         public void Init(bool isPlayer)
         {
             this.isPlayer = isPlayer;
@@ -40,6 +41,10 @@ namespace Player
         public void ChangeToUp()
         {
             image.sprite = upImage;
+        }
+        public void HPadd()
+        {
+            hp++;
         }
 
         public void ChangeToDown()
