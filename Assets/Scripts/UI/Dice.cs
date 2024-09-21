@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Enums;
@@ -76,20 +77,78 @@ namespace UI
         public void RollADice()
         {
             var rollResult = Random.Range(1, 7);
-            ChangeImage(rollResult);
-            if (isPlayerDice)
+            var numberList = GenerateRandomList(10);
+            numberList.Add(rollResult);
+            StartCoroutine(RollAnimation(numberList));
+            image.transform.DOScale(1.3f, 0.5f).SetEase(Ease.OutCubic).OnComplete(() =>
             {
-                EventCenter.GetInstance().EventTrigger(Events.PlayerRollDice, rollResult);
-            }
-            else
+                image.transform.DOScale(1f, 0.5f).SetEase(Ease.InCubic);
+            });
+            image.transform.DOLocalRotate(new Vector3(0f, 0f, 30f), 0.25f).SetEase(Ease.OutCubic).OnComplete(() =>
             {
-                EventCenter.GetInstance().EventTrigger(Events.BotRollDice, rollResult);
+                image.transform.DOLocalRotate(new Vector3(0f, 0f, -30f), 0.5f).SetEase(Ease.InOutCubic)
+                    .OnComplete(() =>
+                    {
+                        image.transform.DOLocalRotate(new Vector3(0f, 0f, 0f), 0.25f).SetEase(Ease.InCubic);
+                    });
+            });
+
+            DOVirtual.DelayedCall(1.2f,
+                () =>
+                {
+                    image.transform.DOScale(1.3f, 0.35f).SetEase(Ease.OutQuint).OnComplete(() =>
+                    {
+                        image.transform.DOScale(1f, 0.35f).SetEase(Ease.InQuint);
+                    });
+                });
+
+            DOVirtual.DelayedCall(2f, () =>
+            {
+                if (isPlayerDice)
+                {
+                    EventCenter.GetInstance().EventTrigger(Events.PlayerRollDice, rollResult);
+                }
+                else
+                {
+                    EventCenter.GetInstance().EventTrigger(Events.BotRollDice, rollResult);
+                }
+            });
+        }
+
+        public IEnumerator RollAnimation(List<int> animationList)
+        {
+            var list = new List<int>(animationList);
+            while (list.Count > 0)
+            {
+                ChangeImage(list[0]);
+                list.RemoveAt(0);
+                yield return new WaitForSeconds(0.1f);
             }
         }
 
         private void BotRollDice()
         {
             DOVirtual.DelayedCall(1f, RollADice);
+        }
+
+        public static List<int> GenerateRandomList(int length)
+        {
+            List<int> randomList = new List<int>();
+            int previousNumber = -1;
+
+            for (int i = 0; i < length; i++)
+            {
+                int nextNumber;
+                do
+                {
+                    nextNumber = Random.Range(1, 7); // 生成1到6的随机数
+                } while (nextNumber == previousNumber); // 确保不与前一个数字重复
+
+                randomList.Add(nextNumber);
+                previousNumber = nextNumber;
+            }
+
+            return randomList;
         }
     }
 }
