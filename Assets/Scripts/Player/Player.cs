@@ -17,7 +17,9 @@ namespace Player
         public GameTile currentTIle;
         public bool isPlayer;
 
-        public int hp = 7;
+        public int hp;
+        public int hpMax;
+
         public void Init(bool isPlayer)
         {
             this.isPlayer = isPlayer;
@@ -25,11 +27,15 @@ namespace Player
             {
                 EventCenter.GetInstance().AddEventListener<int>(Events.PlayerRollDice, PlayerMove);
                 Global.Player = this;
+                hpMax = 5;
+                hp = 5;
             }
             else
             {
                 EventCenter.GetInstance().AddEventListener<int>(Events.BotRollDice, PlayerMove);
                 Global.Bot = this;
+                hpMax = 8;
+                hp = 8;
             }
         }
 
@@ -45,13 +51,22 @@ namespace Player
 
         public void Heal(int healAmount)
         {
-            hp += healAmount;
+            if (hp + healAmount >= hpMax)
+            {
+                hp = hpMax;
+            }
+            else
+            {
+                hp += healAmount;
+            }
+
+            EventCenter.GetInstance().EventTrigger(Events.UpdateHpUI);
         }
 
         public void TakeDamage(int damageAmount)
         {
             hp -= damageAmount;
-
+            EventCenter.GetInstance().EventTrigger(Events.UpdateHpUI);
             CheckDeath();
         }
 
