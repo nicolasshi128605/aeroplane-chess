@@ -35,7 +35,7 @@ namespace Managers
                 () =>
                 {
                     CrossAttack(true, 1);
-                    DOVirtual.DelayedCall(1f,
+                    DOVirtual.DelayedCall(1.5f,
                         () => { EventCenter.GetInstance().EventTrigger(Events.PlayerTurnEnd); });
                 });
 
@@ -43,7 +43,7 @@ namespace Managers
                 () =>
                 {
                     CrossAttack(false, 1);
-                    DOVirtual.DelayedCall(1f,
+                    DOVirtual.DelayedCall(1.5f,
                         () => { EventCenter.GetInstance().EventTrigger(Events.BotTurnEnd); });
                 });
         }
@@ -122,6 +122,7 @@ namespace Managers
 
         public void CrossAttackAtTile(GameTile tile, bool isPlayer, int damageAmount)
         {
+            tile.TileShake();
             var target = isPlayer ? Global.Bot : Global.Player;
             if (target.currentTIle == tile)
             {
@@ -181,9 +182,13 @@ namespace Managers
         public void CrossAttack(bool isPlayer, int damageAmount)
         {
             var user = isPlayer ? Global.Player : Global.Bot;
-            var attack = Instantiate(attackPrefab, user.transform.position, quaternion.identity);
-            attack.PlayAttack();
-            CrossAttackAtTile(user.currentTIle, isPlayer, damageAmount);
+            user.JumpAttack(1f);
+            DOVirtual.DelayedCall(1f, () =>
+            {
+                var attack = Instantiate(attackPrefab, user.transform.position, quaternion.identity);
+                attack.PlayAttack();
+                CrossAttackAtTile(user.currentTIle, isPlayer, damageAmount);
+            });
         }
     }
 }

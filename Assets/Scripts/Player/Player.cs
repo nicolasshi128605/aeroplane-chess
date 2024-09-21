@@ -53,6 +53,21 @@ namespace Player
             });
         }
 
+        public void JumpAttack(float duration)
+        {
+            image.transform.DOLocalMoveY(2f, duration / 2f).From(0.6f).SetEase(Ease.OutQuint).OnComplete(() =>
+            {
+                image.transform.DOLocalMoveY(0.6f, duration / 2f).From(2f).SetEase(Ease.InQuint).OnComplete(() =>
+                {
+                    image.transform.DOShakePosition(0.2f, 0.5f, 100);
+                });
+            });
+            shadow.DOScale(0.6f, duration / 2f).From(1f).SetEase(Ease.OutQuint).OnComplete(() =>
+            {
+                shadow.DOScale(1f, duration / 2f).From(0.6f).SetEase(Ease.InQuint);
+            });
+        }
+
         public void PlayerMove(int moveStep)
         {
             currentTIle.MovePlayerToNextTile(moveStep, this);
