@@ -18,5 +18,6 @@ namespace Enums
         UpdateHpUI,
         ShakeHpUI,
         PlayerDrawCard,
+        PlaySound,
     }
 }

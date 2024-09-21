@@ -95,6 +95,11 @@ namespace Player
         public void Heal(int healAmount)
         {
             healEffect.Play();
+            EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+            {
+                name = "Heal",
+                volume = 1f
+            });
             if (hp + healAmount >= hpMax)
             {
                 hp = hpMax;
@@ -109,6 +114,11 @@ namespace Player
 
         public void TakeDamage(int damageAmount)
         {
+            EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+            {
+                name = "Damage",
+                volume = 1f
+            });
             hp -= damageAmount;
             EventCenter.GetInstance().EventTrigger(Events.UpdateHpUI);
             EventCenter.GetInstance().EventTrigger(Events.ShakeHpUI, isPlayer);

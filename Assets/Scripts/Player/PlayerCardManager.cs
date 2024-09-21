@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Enums;
+using Managers;
 using UnityEngine;
 
 namespace Player
@@ -20,12 +21,19 @@ namespace Player
             {
                 if (card.cardName == cardInHand[index])
                 {
+                    EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+                    {
+                        name = "UseCard",
+                        volume = 1f
+                    });
                     card.ApplyCardEffect();
+                    Global.CardDescription.text.text = "";
                     break;
                 }
             }
 
             cardInHand.RemoveAt(index);
+            Global.CardDisplayManager.Hide();
             EventCenter.GetInstance().EventTrigger(Events.UpdateCardInHandUI);
         }
     }

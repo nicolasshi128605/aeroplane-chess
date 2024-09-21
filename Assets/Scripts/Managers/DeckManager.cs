@@ -81,6 +81,11 @@ namespace Managers
         public void DrawACardToPlayHand()
         {
             if (Global.Player.playerCardManager.cardInHand.Count >= 7) return;
+            EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+            {
+                name = "Draw",
+                volume = 1f
+            });
             Global.Player.playerCardManager.cardInHand.Add(DrawACard());
             EventCenter.GetInstance().EventTrigger(Events.UpdateCardInHandUI);
             EventCenter.GetInstance().EventTrigger(Events.PlayerDrawCard);

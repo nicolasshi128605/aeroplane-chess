@@ -188,6 +188,11 @@ namespace Managers
                 var attack = Instantiate(attackPrefab, user.transform.position, quaternion.identity);
                 attack.PlayAttack();
                 CrossAttackAtTile(user.currentTIle, isPlayer, damageAmount);
+                EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+                {
+                    name = "Attack",
+                    volume = 1f
+                });
             });
         }
     }
