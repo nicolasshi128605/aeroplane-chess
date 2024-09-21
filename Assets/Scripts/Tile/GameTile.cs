@@ -68,6 +68,7 @@ namespace Tile
 
         private void TileEffect(Player.Player player)
         {
+            var waitTime = 0f;
             switch (tileType)
             {
                 case TileType.White:
@@ -76,16 +77,35 @@ namespace Tile
                     Global.DeckManager.DrawACardToPlayHand();
                     break;
                 case TileType.Blue:
-                    teleportTile.SetPlayerHere(player);
+                    waitTime = 1.2f;
+                    player.PlayTeleportEffectUp();
+                    DOVirtual.DelayedCall(0.51f, () =>
+                    {
+                        player.PlayTeleportEffectDown();
+                        teleportTile.SetPlayerHere(player);
+                    });
                     Debug.Log("Player teleported to the target location from a blue tile!");
                     break;
                 case TileType.Green:
+                    waitTime = 1.2f;
                     player.Heal(1);
                     Debug.Log("Player stepped on a green tile! HP increased by 1.");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            DOVirtual.DelayedCall(waitTime, () =>
+            {
+                if (player.isPlayer)
+                {
+                    EventCenter.GetInstance().EventTrigger(Events.PlayerPlayCardStart);
+                }
+                else
+                {
+                    DOVirtual.DelayedCall(0.5f, () => { EventCenter.GetInstance().EventTrigger(Events.BotAttack); });
+                }
+            });
         }
 
         public void MovePlayerToNextTile(int remainingMoveStep, Player.Player player)
@@ -103,17 +123,6 @@ namespace Tile
             else
             {
                 SetPlayerHere(player, true);
-                if (player.isPlayer)
-                {
-                    EventCenter.GetInstance().EventTrigger(Events.PlayerPlayCardStart);
-                }
-                else
-                {
-                    DOVirtual.DelayedCall(0.5f, () =>
-                    {
-                        EventCenter.GetInstance().EventTrigger(Events.BotAttack);
-                    });
-                }
             }
         }
 

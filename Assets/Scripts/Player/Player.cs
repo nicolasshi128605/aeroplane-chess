@@ -15,6 +15,8 @@ namespace Player
         public Sprite leftImage;
         public Sprite rightImage;
         public PlayerCardManager playerCardManager;
+        public ParticleSystem teleportEffect;
+        public ParticleSystem healEffect;
 
         public GameTile currentTIle;
         public bool isPlayer;
@@ -68,6 +70,18 @@ namespace Player
             });
         }
 
+        public void PlayTeleportEffectUp()
+        {
+            image.transform.DOScaleX(0f, 0.4f);
+            teleportEffect.Play();
+        }
+
+        public void PlayTeleportEffectDown()
+        {
+            image.transform.DOScaleX(0.08f, 0.4f);
+            teleportEffect.Play();
+        }
+
         public void PlayerMove(int moveStep)
         {
             currentTIle.MovePlayerToNextTile(moveStep, this);
@@ -80,6 +94,7 @@ namespace Player
 
         public void Heal(int healAmount)
         {
+            healEffect.Play();
             if (hp + healAmount >= hpMax)
             {
                 hp = hpMax;
