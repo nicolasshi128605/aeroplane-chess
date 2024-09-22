@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using DG.Tweening;
 using Enums;
 using Tile;
@@ -16,8 +12,6 @@ namespace Managers
         public GameTile botStartTile;
         public Player.Player playerPrefab;
         public Attack.Attack attackPrefab;
-
-        private const string FolderPath = "Assets/Scripts/CardEffect";
 
         private void Awake()
         {
@@ -81,38 +75,7 @@ namespace Managers
 
         private void AttachAllCardScripts(Player.Player player)
         {
-            string[] files = Directory.GetFiles(FolderPath, "*.cs", SearchOption.AllDirectories);
-
-            List<Type> monoBehaviourTypes = new List<Type>();
-
-            foreach (string filePath in files)
-            {
-                string fileName = Path.GetFileNameWithoutExtension(filePath);
-                string scriptClassName = fileName;
-
-                Type scriptType = GetTypeByName(scriptClassName);
-                if (scriptType != null && scriptType.IsSubclassOf(typeof(MonoBehaviour)))
-                {
-                    monoBehaviourTypes.Add(scriptType);
-                }
-            }
-
-            foreach (Type type in monoBehaviourTypes)
-            {
-                if (player.playerCardManager.GetComponent(type) == null)
-                {
-                    player.playerCardManager.gameObject.AddComponent(type);
-                }
-            }
-
             Global.Player.playerCardManager.LoadAllCards();
-        }
-
-        private static Type GetTypeByName(string className)
-        {
-            return AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(assembly => assembly.GetTypes())
-                .FirstOrDefault(type => type.Name == className);
         }
 
         private void OnApplicationQuit()

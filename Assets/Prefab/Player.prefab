@@ -272,6 +272,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1107041182390771414}
   - component: {fileID: 5937504768735886973}
+  - component: {fileID: 4016071216665182528}
+  - component: {fileID: 4178958808146520950}
+  - component: {fileID: 8275376795822731651}
+  - component: {fileID: 1518698073872874901}
   m_Layer: 0
   m_Name: PlayerCardManager
   m_TagString: Untagged
@@ -308,6 +312,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardEffects: []
   cardInHand: []
+--- !u!114 &4016071216665182528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435831877052881583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e3cdbbe9df465ea0cebed46c7b9cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: 
+--- !u!114 &4178958808146520950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435831877052881583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304c2732b58b43c590aec62564543544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: 
+--- !u!114 &8275376795822731651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435831877052881583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ac96e03dae4049bd80d61ea0300377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: 
+--- !u!114 &1518698073872874901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435831877052881583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690388ab1f584af38cc888a70e724e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: 
 --- !u!1001 &5595359244578841161
 PrefabInstance:
   m_ObjectHideFlags: 0
