@@ -608,6 +608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3271579129451098645}
   - component: {fileID: 7903143400015756049}
+  - component: {fileID: 3998275352789824555}
   m_Layer: 5
   m_Name: PlayerHp
   m_TagString: Untagged
@@ -652,3 +653,16 @@ MonoBehaviour:
   isPlayer: 0
   hpText: {fileID: 6670093213836773590}
   fillImage: {fileID: 5475946014643503183}
+  canvasGroup: {fileID: 3998275352789824555}
+--- !u!225 &3998275352789824555
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897733510437949392}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

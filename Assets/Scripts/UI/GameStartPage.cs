@@ -6,6 +6,7 @@ namespace UI
     public class GameStartPage : MonoBehaviour
     {
         public Button startButton;
+        public CanvasGroup buttonCanvas;
 
         private void Awake()
         {
