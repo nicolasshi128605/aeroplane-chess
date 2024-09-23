@@ -38,6 +38,31 @@ namespace UI
                 playerRollButton.onClick.RemoveAllListeners();
                 playerRollButton.onClick.AddListener(RollADice);
                 playerRollButton.onClick.AddListener(() => { playerRollButton.gameObject.SetActive(false); });
+                playerRollButton.gameObject.SetActive(false);
+            }
+
+
+            if (isPlayerDice)
+            {
+                transform.localPosition += new Vector3(300f, 0f, 0f);
+                EventCenter.GetInstance()
+                    .AddEventListener(Events.PlayStartEffect,
+                        () =>
+                        {
+                            transform.DOLocalMoveX(transform.localPosition.x - 300f, 2f).SetEase(Ease.OutBack)
+                                .SetDelay(3f).OnComplete(() => { playerRollButton.gameObject.SetActive(true); });
+                        });
+            }
+            else
+            {
+                transform.localPosition += new Vector3(-300f, 0f, 0f);
+                EventCenter.GetInstance()
+                    .AddEventListener(Events.PlayStartEffect,
+                        () =>
+                        {
+                            transform.DOLocalMoveX(transform.localPosition.x + 300f, 2f).SetEase(Ease.OutBack)
+                                .SetDelay(3f);
+                        });
             }
         }
 

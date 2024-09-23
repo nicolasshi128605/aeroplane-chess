@@ -4,6 +4,7 @@ using DG.Tweening;
 using Enums;
 using Managers;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Tile
 {
@@ -24,9 +25,25 @@ namespace Tile
         public float rayDistance = 1f;
         public LayerMask tileLayerMask;
 
+        public SpriteRenderer color;
+        public SpriteRenderer arrowColor;
+
         private void Awake()
         {
             Init();
+
+            EventCenter.GetInstance().AddEventListener(Events.PlayStartEffect, () =>
+            {
+                var currentY = transform.position.y;
+                var delay = Random.Range(0.5f, 1.5f);
+                color.DOFade(0f, 0f);
+                arrowColor.DOFade(0f, 0f);
+                color.DOFade(1f, 0.5f).SetDelay(delay);
+                transform.DOMoveY(currentY, 0.5f).From(currentY + 2f).SetDelay(delay).OnComplete(() =>
+                {
+                    arrowColor.DOFade(1f, 0.5f);
+                }).SetDelay(delay);
+            });
         }
 
         public void SetPlayerHere(Player.Player player, bool triggerEffect = false, bool triggerSound = true)

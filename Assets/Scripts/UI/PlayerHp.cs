@@ -26,6 +26,21 @@ namespace UI
             {
                 GameEnd(false);
             });
+
+            if (isPlayer)
+            {
+                var startPosition = transform.localPosition;
+                transform.localPosition += new Vector3(700f, 0f, 0f);
+                EventCenter.GetInstance()
+                    .AddEventListener(Events.PlayStartEffect, () => { transform.DOLocalMove(startPosition, 2f).SetEase(Ease.OutBack).SetDelay(3f); });
+            }
+            else
+            {
+                var startPosition = transform.localPosition;
+                transform.localPosition += new Vector3(-1000f, 0f, 0f);
+                EventCenter.GetInstance()
+                    .AddEventListener(Events.PlayStartEffect, () => { transform.DOLocalMove(startPosition, 2f).SetEase(Ease.OutBack).SetDelay(3f); });
+            }
         }
 
         private void UpdateUI()

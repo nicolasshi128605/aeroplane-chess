@@ -3,6 +3,7 @@ namespace Enums
     public enum Events
     {
         GameStart,
+        PlayStartEffect,
         PlayerTurnStart,
         PlayerRollDice,
         PlayerPlayCardStart,

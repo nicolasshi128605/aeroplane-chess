@@ -21,6 +21,25 @@ namespace UI
             EventCenter.GetInstance().AddEventListener(Events.PlayerPlayCardStart, Show);
             EventCenter.GetInstance().AddEventListener(Events.PlayerPlayCardEnd, Hide);
             EventCenter.GetInstance().AddEventListener(Events.PlayerDrawCard, PlayDrawAnimation);
+
+            EventCenter.GetInstance()
+                .AddEventListener(Events.PlayStartEffect, () =>
+                {
+                    DOVirtual.DelayedCall(5f, () =>
+                    {
+                        for (var index = 0; index < currentCardsInHand.Count; index++)
+                        {
+                            var card = currentCardsInHand[index];
+                            DOVirtual.DelayedCall(0.2f * index, () =>
+                            {
+                                card.gameObject.SetActive(true);
+                                card.transform.DOLocalMoveY(0f, 1f).From(-200f).SetEase(Ease.OutBack);
+                                card.canvasGroup.DOFade(1f, 0.5f).From(0f);
+                            });
+                        }
+                    });
+                });
+
             Hide();
         }
 
@@ -30,17 +49,7 @@ namespace UI
             {
                 card.gameObject.SetActive(false);
             }
-
-            for (var index = 0; index < currentCardsInHand.Count; index++)
-            {
-                var card = currentCardsInHand[index];
-                DOVirtual.DelayedCall(0.2f * index, () =>
-                {
-                    card.gameObject.SetActive(true);
-                    card.transform.DOLocalMoveY(0f, 1f).From(-200f).SetEase(Ease.OutBack);
-                    card.canvasGroup.DOFade(1f, 0.5f).From(0f);
-                });
-            }
+            
         }
 
         private void UpdateUI()
