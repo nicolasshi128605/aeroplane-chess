@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Enums;
 using Tile;
+using TMPro;
 using UI;
 using Unity.Mathematics;
 using UnityEngine;
@@ -17,12 +18,27 @@ namespace Managers
         public GameStartPage gameStartPage;
         public GameEndPage gameEndPage;
 
+        public CanvasGroup blackCover;
+        public GameObject cover;
+
         public bool isGameEnd;
 
         private void Awake()
         {
+            blackCover.gameObject.SetActive(true);
+            DOVirtual.DelayedCall(1f,
+                () =>
+                {
+                    blackCover.DOFade(0f, 1f).From(1f).OnComplete(() =>
+                    {
+                        blackCover.gameObject.SetActive(false);
+                        gameStartPage.startButton.gameObject.SetActive(true);
+                        gameStartPage.buttonCanvas.DOFade(1f, 0.5f).From(0f);
+                    });
+                });
             Global.GameManager = this;
             gameStartPage.gameObject.SetActive(true);
+            gameStartPage.startButton.gameObject.SetActive(false);
             gameEndPage.gameObject.SetActive(false);
             EventCenter.GetInstance().AddEventListener(Events.GameStart, SpawnPlayer);
             EventCenter.GetInstance().AddEventListener(Events.PlayerTurnEnd, BotTurnStart);
@@ -113,12 +129,12 @@ namespace Managers
         {
             var player = Instantiate(playerPrefab);
             player.Init(true);
-            playerStartTile.SetPlayerHere(player);
+            playerStartTile.SetPlayerHere(player, triggerSound: false);
             AttachAllCardScripts(player);
 
             var bot = Instantiate(playerPrefab);
             bot.Init(false);
-            botStartTile.SetPlayerHere(bot);
+            botStartTile.SetPlayerHere(bot, triggerSound: false);
             AttachAllCardScripts(bot);
 
             EventCenter.GetInstance().EventTrigger(Events.UpdateHpUI);

@@ -29,7 +29,7 @@ namespace Tile
             Init();
         }
 
-        public void SetPlayerHere(Player.Player player, bool triggerEffect = false)
+        public void SetPlayerHere(Player.Player player, bool triggerEffect = false, bool triggerSound = true)
         {
             player.transform.position = transform.position;
             player.currentTIle = this;
@@ -51,11 +51,14 @@ namespace Tile
             }
 
             TileShake();
-            EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+            if (triggerSound)
             {
-                name = "step",
-                volume = 0.3f
-            });
+                EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+                {
+                    name = "step",
+                    volume = 0.3f
+                });
+            }
 
             if (triggerEffect)
             {
