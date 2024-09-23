@@ -41,15 +41,15 @@ namespace Player
             {
                 EventCenter.GetInstance().AddEventListener<int>(Events.PlayerRollDice, PlayerMove);
                 Global.Player = this;
-                hpMax = 1;
-                hp = 1;
+                hpMax = 3;
+                hp = 3;
             }
             else
             {
                 EventCenter.GetInstance().AddEventListener<int>(Events.BotRollDice, PlayerMove);
                 Global.Bot = this;
-                hpMax = 1;
-                hp = 1;
+                hpMax = 5;
+                hp = 5;
             }
         }
 
