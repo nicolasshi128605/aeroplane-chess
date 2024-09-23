@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using Enums;
 using Managers;
@@ -23,6 +24,15 @@ namespace Player
 
         public int hp;
         public int hpMax;
+
+        private void Awake()
+        {
+            EventCenter.GetInstance().AddEventListener(Events.PlayStartEffect, () =>
+            {
+                var currentY = transform.position.y;
+                transform.DOMoveY(currentY, 1f).From(10f).SetDelay(2f);
+            });
+        }
 
         public void Init(bool isPlayer)
         {

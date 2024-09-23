@@ -92,6 +92,8 @@ MonoBehaviour:
   tileLayerMask:
     serializedVersion: 2
     m_Bits: 8192
+  color: {fileID: 2037249823372243290}
+  arrowColor: {fileID: 9222515535399632958}
 --- !u!61 &1725542211068032731
 BoxCollider2D:
   m_ObjectHideFlags: 0

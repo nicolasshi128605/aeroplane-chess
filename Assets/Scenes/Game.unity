@@ -884,6 +884,7 @@ GameObject:
   - component: {fileID: 129838145}
   - component: {fileID: 129838144}
   - component: {fileID: 129838146}
+  - component: {fileID: 129838147}
   m_Layer: 5
   m_Name: GameStartPage
   m_TagString: Untagged
@@ -964,6 +965,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startButton: {fileID: 1910040890}
   buttonCanvas: {fileID: 1910040893}
+  canvasGroup: {fileID: 129838147}
+--- !u!225 &129838147
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129838142}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &131802369
 GameObject:
   m_ObjectHideFlags: 0

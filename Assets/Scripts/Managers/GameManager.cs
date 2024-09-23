@@ -97,12 +97,18 @@ namespace Managers
                             gameEndPage.text.text = "You Win";
                         });
                 });
+
+            EventCenter.GetInstance().AddEventListener(Events.PlayStartEffect,
+                () =>
+                {
+                    DOVirtual.DelayedCall(5f,
+                        () => { EventCenter.GetInstance().EventTrigger(Events.PlayerTurnStart); });
+                });
         }
 
         private void Start()
         {
             EventCenter.GetInstance().EventTrigger(Events.GameStart);
-            DOVirtual.DelayedCall(0.5f, () => { EventCenter.GetInstance().EventTrigger(Events.PlayerTurnStart); });
         }
 
         public void PlayerTurnStart()
