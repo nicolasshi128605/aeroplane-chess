@@ -31,15 +31,15 @@ namespace Player
             {
                 EventCenter.GetInstance().AddEventListener<int>(Events.PlayerRollDice, PlayerMove);
                 Global.Player = this;
-                hpMax = 5;
-                hp = 5;
+                hpMax = 1;
+                hp = 1;
             }
             else
             {
                 EventCenter.GetInstance().AddEventListener<int>(Events.BotRollDice, PlayerMove);
                 Global.Bot = this;
-                hpMax = 8;
-                hp = 8;
+                hpMax = 1;
+                hp = 1;
             }
         }
 
@@ -132,6 +132,16 @@ namespace Player
         {
             if (hp <= 0)
             {
+                if (isPlayer)
+                {
+                    EventCenter.GetInstance().EventTrigger(Events.GameLose);
+                }
+                else
+                {
+                    EventCenter.GetInstance().EventTrigger(Events.GameWIn);
+                }
+
+                Global.GameManager.isGameEnd = true;
             }
         }
 

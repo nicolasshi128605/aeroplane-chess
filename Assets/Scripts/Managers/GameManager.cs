@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Enums;
 using Tile;
+using UI;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -13,8 +14,16 @@ namespace Managers
         public Player.Player playerPrefab;
         public Attack.Attack attackPrefab;
 
+        public GameStartPage gameStartPage;
+        public GameEndPage gameEndPage;
+
+        public bool isGameEnd;
+
         private void Awake()
         {
+            Global.GameManager = this;
+            gameStartPage.gameObject.SetActive(true);
+            gameEndPage.gameObject.SetActive(false);
             EventCenter.GetInstance().AddEventListener(Events.GameStart, SpawnPlayer);
             EventCenter.GetInstance().AddEventListener(Events.PlayerTurnEnd, BotTurnStart);
             EventCenter.GetInstance().AddEventListener(Events.BotTurnEnd, PlayerTurnStart);
@@ -40,6 +49,38 @@ namespace Managers
                     DOVirtual.DelayedCall(1.5f,
                         () => { EventCenter.GetInstance().EventTrigger(Events.BotTurnEnd); });
                 });
+
+            EventCenter.GetInstance().AddEventListener(Events.GameLose,
+                () =>
+                {
+                    EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+                    {
+                        name = "Lose",
+                        volume = 1f
+                    });
+                    DOVirtual.DelayedCall(1.5f,
+                        () =>
+                        {
+                            gameEndPage.gameObject.SetActive(true);
+                            gameEndPage.text.text = "Game Over";
+                        });
+                });
+
+            EventCenter.GetInstance().AddEventListener(Events.GameWIn,
+                () =>
+                {
+                    EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
+                    {
+                        name = "Win",
+                        volume = 1f
+                    });
+                    DOVirtual.DelayedCall(1.5f,
+                        () =>
+                        {
+                            gameEndPage.gameObject.SetActive(true);
+                            gameEndPage.text.text = "You Win";
+                        });
+                });
         }
 
         private void Start()
@@ -50,12 +91,22 @@ namespace Managers
 
         public void PlayerTurnStart()
         {
-            DOVirtual.DelayedCall(0.5f, () => { EventCenter.GetInstance().EventTrigger(Events.PlayerTurnStart); });
+            if (isGameEnd) return;
+            DOVirtual.DelayedCall(0.5f, () =>
+            {
+                if (isGameEnd) return;
+                EventCenter.GetInstance().EventTrigger(Events.PlayerTurnStart);
+            });
         }
 
         public void BotTurnStart()
         {
-            DOVirtual.DelayedCall(0.5f, () => { EventCenter.GetInstance().EventTrigger(Events.BotTurnStart); });
+            if (isGameEnd) return;
+            DOVirtual.DelayedCall(0.5f, () =>
+            {
+                if (isGameEnd) return;
+                EventCenter.GetInstance().EventTrigger(Events.BotTurnStart);
+            });
         }
 
         private void SpawnPlayer()
