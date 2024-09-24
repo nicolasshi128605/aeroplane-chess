@@ -10,5 +10,14 @@ namespace Managers
         public static Player.Player Bot;
         public static CardDisplayManager CardDisplayManager;
         public static CardDescription CardDescription;
+
+        public static bool doubleDMG;
+        public static bool DMGHeal;
+
+        public static void Clear()
+        {
+            doubleDMG = false;
+            DMGHeal = false;
+        }
     }
 }

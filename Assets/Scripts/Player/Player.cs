@@ -129,6 +129,11 @@ namespace Player
                 name = "Damage",
                 volume = 1f
             });
+            if (!isPlayer && Global.DMGHeal)
+            {
+                Global.Player.Heal(1);
+            }
+
             hp -= damageAmount;
             EventCenter.GetInstance().EventTrigger(Events.UpdateHpUI);
             EventCenter.GetInstance().EventTrigger(Events.ShakeHpUI, isPlayer);
