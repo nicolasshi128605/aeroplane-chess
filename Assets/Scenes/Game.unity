@@ -2993,12 +2993,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deckSetup:
-  - cardObject: {fileID: 11400000, guid: 93902a78acf5a774095a5ac9ef5e8481, type: 2}
-    cardNumber: 5
-  - cardObject: {fileID: 11400000, guid: f9cab11b22b24954791e537204038622, type: 2}
-    cardNumber: 5
+  - cardObject: {fileID: 11400000, guid: 96220b69e147dbd4391ffdcf5465a6fa, type: 2}
+    cardNumber: 2
+  - cardObject: {fileID: 11400000, guid: f4ac91eab32281d4a9cae4e2f3049289, type: 2}
+    cardNumber: 2
+  - cardObject: {fileID: 11400000, guid: 150dd11cbe596ba40be9c860b270d571, type: 2}
+    cardNumber: 2
+  - cardObject: {fileID: 11400000, guid: 78cd11631573bb34ba4224f8927f0bb6, type: 2}
+    cardNumber: 2
   - cardObject: {fileID: 11400000, guid: 0f0ceca617b4c0349a4c5eb2f27c7ecf, type: 2}
-    cardNumber: 5
+    cardNumber: 2
+  - cardObject: {fileID: 11400000, guid: f9cab11b22b24954791e537204038622, type: 2}
+    cardNumber: 2
+  - cardObject: {fileID: 11400000, guid: 93902a78acf5a774095a5ac9ef5e8481, type: 2}
+    cardNumber: 2
+  - cardObject: {fileID: 11400000, guid: ef88dfb34bbf44147ad31e4d949154ff, type: 2}
+    cardNumber: 2
+  - cardObject: {fileID: 11400000, guid: c328d0836888f014ebc582f1c33d6355, type: 2}
+    cardNumber: 2
   deckInGame: []
 --- !u!1001 &751396483
 PrefabInstance:

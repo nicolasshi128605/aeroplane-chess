@@ -53,9 +53,21 @@ namespace Managers
             EventCenter.GetInstance().AddEventListener(Events.PlayerAttack,
                 () =>
                 {
-                    CrossAttack(true, 1);
+                    if (Global.doubleDMG)
+                    {
+                        CrossAttack(true, 2);
+                    }
+                    else
+                    {
+                        CrossAttack(true, 1);
+                    }
+
                     DOVirtual.DelayedCall(1.5f,
-                        () => { EventCenter.GetInstance().EventTrigger(Events.PlayerTurnEnd); });
+                        () =>
+                        {
+                            Global.Clear();
+                            EventCenter.GetInstance().EventTrigger(Events.PlayerTurnEnd);
+                        });
                 });
 
             EventCenter.GetInstance().AddEventListener(Events.BotAttack,
@@ -153,6 +165,7 @@ namespace Managers
 
         private void OnApplicationQuit()
         {
+            Global.Clear();
             EventCenter.GetInstance().Clear();
         }
 

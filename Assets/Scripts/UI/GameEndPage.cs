@@ -23,6 +23,7 @@ namespace UI
                 Global.GameManager.blackCover.DOFade(1f, 1f).From(0f).OnComplete(() =>
                 {
                     EventCenter.GetInstance().Clear();
+                    Global.Clear();
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 });
             });
