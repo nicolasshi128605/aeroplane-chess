@@ -46,7 +46,8 @@ namespace Tile
             });
         }
 
-        public void SetPlayerHere(Player.Player player, bool triggerEffect = false, bool triggerSound = true)
+        public void SetPlayerHere(Player.Player player, bool triggerEffect = false, bool triggerSound = true,
+            bool isPlayingCard = false)
         {
             player.transform.position = transform.position;
             player.currentTIle = this;
@@ -79,7 +80,7 @@ namespace Tile
 
             if (triggerEffect)
             {
-                TileEffect(player);
+                TileEffect(player, isPlayingCard);
             }
         }
 
@@ -91,7 +92,7 @@ namespace Tile
             });
         }
 
-        private void TileEffect(Player.Player player)
+        private void TileEffect(Player.Player player, bool isPlayingCard = false)
         {
             var waitTime = 0f;
             switch (tileType)
@@ -135,17 +136,31 @@ namespace Tile
                     throw new ArgumentOutOfRangeException();
             }
 
-            DOVirtual.DelayedCall(waitTime, () =>
+            if (!isPlayingCard)
             {
-                if (player.isPlayer)
+                DOVirtual.DelayedCall(waitTime, () =>
                 {
-                    EventCenter.GetInstance().EventTrigger(Events.PlayerPlayCardStart);
-                }
-                else
+                    if (player.isPlayer)
+                    {
+                        EventCenter.GetInstance().EventTrigger(Events.PlayerPlayCardStart);
+                    }
+                    else
+                    {
+                        DOVirtual.DelayedCall(0.5f,
+                            () => { EventCenter.GetInstance().EventTrigger(Events.BotAttack); });
+                    }
+                });
+            }
+            else
+            {
+                DOVirtual.DelayedCall(waitTime, () =>
                 {
-                    DOVirtual.DelayedCall(0.5f, () => { EventCenter.GetInstance().EventTrigger(Events.BotAttack); });
-                }
-            });
+                    if (player.isPlayer)
+                    {
+                        EventCenter.GetInstance().EventTrigger(Events.PlayerPlayCardEnd);
+                    }
+                });
+            }
         }
 
         public void MovePlayerToNextTile(int remainingMoveStep, Player.Player player)
@@ -164,6 +179,23 @@ namespace Tile
             {
                 SetPlayerHere(player, true);
             }
+        }
+
+        public void MovePlayerToNextTile(TileType tileType, Player.Player player)
+        {
+            player.Jump(0.5f);
+            player.transform.DOMove(nextGameTile.transform.position, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                if (nextGameTile.tileType != tileType)
+                {
+                    nextGameTile.SetPlayerHere(player);
+                    nextGameTile.MovePlayerToNextTile(tileType, player);
+                }
+                else
+                {
+                    nextGameTile.SetPlayerHere(player, triggerEffect: true, isPlayingCard: true);
+                }
+            });
         }
 
         private void Init()
