@@ -74,7 +74,7 @@ namespace Tile
                 EventCenter.GetInstance().EventTrigger(Events.PlaySound, new SoundManager.SoundConfig
                 {
                     name = "step",
-                    volume = 0.3f
+                    volume = 1f
                 });
             }
 
