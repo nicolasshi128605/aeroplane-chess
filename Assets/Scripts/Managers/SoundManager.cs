@@ -65,7 +65,7 @@ namespace Managers
 
             // Play the BGM
             bgmSource.clip = bgmClips[bgmName];
-            bgmSource.volume = 0.3f;
+            bgmSource.volume = 1f;
             bgmSource.Play();
         }
 
