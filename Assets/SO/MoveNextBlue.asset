@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: MoveNextBlue
   displayName: Blue!
-  image: {fileID: 21300000, guid: 7422653fadaa14c03b0c8d8ea71c1451, type: 3}
+  image: {fileID: 21300000, guid: 783d113645c9e7c4c9b2aacca6f01cab, type: 3}
   description: Move to the next Blue Tile, and teleport.
